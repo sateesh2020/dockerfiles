@@ -1,0 +1,22 @@
+FROM alpine:3.19
+
+# https://www.speedtest.net/apps/cli#download
+ENV SPEEDTEST_VERSION {{ .version }}
+
+RUN set -eux; \
+	apkArch="$(apk --print-arch)"; \
+	case "$apkArch" in \
+{{ [ .arches[] | ( -}}
+		{{ .apkArch // empty | @sh }}) url={{ .url | @sh }} ;; \
+{{ ) ] | add -}}
+		*) echo >&2 "error: unknown/unsupported architecture: '$apkArch' (see https://www.speedtest.net/apps/cli#download)"; exit 1 ;; \
+	esac; \
+	wget -O speedtest.tgz "$url"; \
+	tar -xvf speedtest.tgz -C /usr/local/bin speedtest; \
+	rm speedtest.tgz; \
+	speedtest --version
+
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+CMD ["speedtest"]

@@ -1,7 +1,15 @@
-FROM python:2
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
 
-ENV BEETS_VERSION 1.3.15
+FROM python:3.9-slim-bullseye
 
-RUN pip install beets==$BEETS_VERSION
+ENV BEETS_VERSION 1.6.0
+
+RUN set -eux; \
+	pip install --no-cache-dir "beets == $BEETS_VERSION"; \
+	beet --version
 
 CMD ["beet"]

@@ -1,24 +1,34 @@
-FROM debian:jessie
+FROM debian:buster-slim
 
-# grab tini for signal processing and zombie killing
-ENV TINI_VERSION v0.9.0
-RUN set -x \
-	&& apt-get update && apt-get install -y ca-certificates curl --no-install-recommends && rm -rf /var/lib/apt/lists/* \
-	&& curl -fSL "https://github.com/krallin/tini/releases/download/$TINI_VERSION/tini" -o /usr/local/bin/tini \
-	&& curl -fSL "https://github.com/krallin/tini/releases/download/$TINI_VERSION/tini.asc" -o /usr/local/bin/tini.asc \
-	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 6380DC428747F6C393FEACA59A84159D7001A4E5 \
-	&& gpg --batch --verify /usr/local/bin/tini.asc /usr/local/bin/tini \
-	&& rm -r "$GNUPGHOME" /usr/local/bin/tini.asc \
-	&& chmod +x /usr/local/bin/tini \
-	&& tini -h \
-	&& apt-get purge --auto-remove -y ca-certificates curl
+RUN set -eux; \
+	apt-get update; \
+	apt-get install -y \
+		exim4-daemon-light \
+		tini \
+	; \
+	rm -rf /var/lib/apt/lists/*; \
+	ln -svfT /etc/hostname /etc/mailname
 
-RUN apt-get update && apt-get install -y exim4-daemon-light && rm -rf /var/lib/apt/lists/*
+# https://blog.dhampir.no/content/exim4-line-length-in-debian-stretch-mail-delivery-failed-returning-message-to-sender
+# https://serverfault.com/a/881197
+# https://bugs.debian.org/828801
+RUN echo "IGNORE_SMTP_LINE_LENGTH_LIMIT='true'" >> /etc/exim4/exim4.conf.localmacros
 
-COPY set-exim4-update-conf /usr/local/bin/
-COPY entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["entrypoint.sh"]
+RUN set -eux; \
+	mkdir -p /var/spool/exim4 /var/log/exim4; \
+	chown -R Debian-exim:Debian-exim /var/spool/exim4 /var/log/exim4
+VOLUME ["/var/spool/exim4", "/var/log/exim4"]
+
+COPY set-exim4-update-conf docker-entrypoint.sh /usr/local/bin/
+RUN set -eux; \
+	set-exim4-update-conf \
+		dc_eximconfig_configtype 'internet' \
+		dc_hide_mailname 'true' \
+		dc_local_interfaces '0.0.0.0 ; ::0' \
+		dc_other_hostnames '' \
+		dc_relay_nets '0.0.0.0/0' \
+	;
 
 EXPOSE 25
-CMD ["tini", "--", "exim", "-bd", "-v"]
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["exim", "-bd", "-v"]

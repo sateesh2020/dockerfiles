@@ -1,0 +1,55 @@
+{
+  "debian": {
+    "version": "bookworm"
+  },
+  "engine": {
+    "sha256": "8841e1a354d5e4de375d623ef0367154093ce20bebf9a4cb898cf748eb6e83a1",
+    "version": "20.10.27-2~deb12u0"
+  },
+  "containerd": {
+    "sha256": "4a53a4d365342dcf2549e190f812fc454921fbf87d256c489e2fd2bcdf705d37",
+    "version": "1.6.28-1~deb12u0"
+  },
+  "runc": {
+    "sha256": "5c00c17469da23e9436f4013a78564693b752655c38d46e2d41932fa3ed1f315",
+    "version": "1.1.12-1~deb12u0"
+  },
+  "cli": {
+    "sha256": "4890d2824ab2dd5c640704f7fc01b1d26ac0dc40e8202ffe168599676f63365d",
+    "version": "20.10.27-1~deb12u0"
+  },
+  "cli-plugin-buildx": {
+    "sha256": "f5b7dd3b0366c1dc75a849a48cfd765927b9517ed6d76a6ee365c55cf1e6386f",
+    "version": "0.12.1-1~deb12u0"
+  },
+  "unstable": {
+    "engine": {
+      "sha256": "4d4b0436804dbceab118d7201cf6e409850fad79997e2d177f1c4d16928a25ea",
+      "version": "20.10.27-2"
+    },
+    "containerd": {
+      "sha256": "c7badd041edeaab0aba071c9adac5641c91520aeb5b8108351a70faf2b62ac02",
+      "version": "1.6.28-1"
+    },
+    "runc": {
+      "sha256": "8b7088956964f59825e2f856cc58820a754886a17d42bea2be18b54803a18232",
+      "version": "1.1.12-1"
+    },
+    "cli": {
+      "sha256": "dccb8f174af1673b19e7db750399a30ecb31a78c373dcd98d88b4342f909f81f",
+      "version": "20.10.27-1"
+    },
+    "cli-plugin-buildx": {
+      "sha256": "a8ef5b7a9d91e21b45813cfc98048ee5d68b538d6efa69c502ee1a4592da1133",
+      "version": "0.12.1-1"
+    }
+  },
+  "dind": {
+    "version": "65cfcc28ab37cb75e1560e4b4738719c07c6618e"
+  },
+  "version": "20.10.27",
+  "variants": [
+    "",
+    "unstable"
+  ]
+}

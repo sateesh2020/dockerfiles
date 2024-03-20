@@ -1,0 +1,27 @@
+{
+  "commit": "7333465abf9efba81876303bb57e6fadb946041b",
+  "ref": "refs/tags/v1.7.0^{}",
+  "tag": "v1.7.0",
+  "version": "1.7.0",
+  "sha256": {
+    "node_exporter-1.7.0.darwin-amd64.tar.gz": "28ba8d59aaca84455a6caa03e009adf4067fb0b9bbda6003aa17def38ea02370",
+    "node_exporter-1.7.0.darwin-arm64.tar.gz": "f21c69eead923b9762b281788936d11c3276f9505ba20b083f6929487ae8b6bc",
+    "node_exporter-1.7.0.linux-386.tar.gz": "fa662462d5bf69895b64a1efaabfab2ce0b6fa8962e960cb6a5277fa394d5c2d",
+    "node_exporter-1.7.0.linux-amd64.tar.gz": "a550cd5c05f760b7934a2d0afad66d2e92e681482f5f57a917465b1fba3b02a6",
+    "node_exporter-1.7.0.linux-arm64.tar.gz": "e386c7b53bc130eaf5e74da28efc6b444857b77df8070537be52678aefd34d96",
+    "node_exporter-1.7.0.linux-armv5.tar.gz": "5745e8f5c24efbefbe8a26a9407e3dbc52558f56f1150d7ea2aa06fc166a08c4",
+    "node_exporter-1.7.0.linux-armv6.tar.gz": "0a3c5578be8dfca56dc5cce7bc788fb4625c64a8e0209ac779660fae9a6331db",
+    "node_exporter-1.7.0.linux-armv7.tar.gz": "2f8df32a8926c6368b3e0815fe900eb5cde1096bf0750e3d1e79f2f35b0e274d",
+    "node_exporter-1.7.0.linux-mips.tar.gz": "73df12e39a4ac1fe52b4967b6895d43d9dd826cf7c8d33857b33d56ae1c5a612",
+    "node_exporter-1.7.0.linux-mips64.tar.gz": "8908900967a9a3b8380573dadf994ca02abf823b866ed2ae9dbfa030d7b48510",
+    "node_exporter-1.7.0.linux-mips64le.tar.gz": "4192468c3337f363b928d24ab3505c7ff513eae390c91ad49e1503ba8cd9f948",
+    "node_exporter-1.7.0.linux-mipsle.tar.gz": "be29eccd784cc489916295f3bbe2c9029c918090c43ee6f0220c401102ac6a4f",
+    "node_exporter-1.7.0.linux-ppc64.tar.gz": "473ebeb73d73c8982005a3252fd36889230d4ca9b878bd0cd336d5e585e54d1a",
+    "node_exporter-1.7.0.linux-ppc64le.tar.gz": "c4f8151f7f6c530587c6e5b9879c5765daa195432d822a3531bd2bcadd3393a2",
+    "node_exporter-1.7.0.linux-riscv64.tar.gz": "ba2d97e9b07d4ba0e5a264b436a2fafcf8aaa9d2fc44e47eb57faf58c2142302",
+    "node_exporter-1.7.0.linux-s390x.tar.gz": "aeda68884918f10b135b76bbcd4977cb7a1bb3c4c98a8551f8d2183bafdd9264",
+    "node_exporter-1.7.0.netbsd-386.tar.gz": "c84b6e4478ab8348ad7a2dac069508c7975075c94cf93ca1a99dabaf4f240819",
+    "node_exporter-1.7.0.netbsd-amd64.tar.gz": "419f3ce342caa0c6a0da51b9dd81945669fb21bd4e298bf0b358cbf3f691532f",
+    "node_exporter-1.7.0.openbsd-amd64.tar.gz": "e1fcb304c8de3aca5d39f7ed4715c4787bf9e459936b32f7cbecfbd01b07a553"
+  }
+}

@@ -1,0 +1,26 @@
+FROM alpine:3.19
+
+RUN apk add --no-cache ca-certificates
+
+# https://github.com/vultr/vultr-cli/releases
+ENV VULTR_CLI_VERSION {{ .version }}
+
+RUN set -eux; \
+	\
+	apkArch="$(apk --print-arch)"; \
+	case "$apkArch" in \
+{{ [ .arches[] | ( -}}
+		{{ .apkArch // empty | @sh }}) url={{ .url | @sh }}; sha256={{ .sha256 | @sh }} ;; \
+{{ ) ] | add -}}
+		*) echo >&2 "error: unsupported architecture: '$apkArch'"; exit 1 ;; \
+	esac; \
+	\
+	wget -O vultr.tgz "$url"; \
+	echo "$sha256 *vultr.tgz" | sha256sum -c -; \
+	\
+	tar -xvf vultr.tgz -C /usr/local/bin; \
+	rm vultr.tgz; \
+	\
+	VULTR_API_KEY=fake vultr-cli version
+
+CMD ["vultr-cli", "--help"]

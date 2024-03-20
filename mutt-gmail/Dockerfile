@@ -1,16 +1,27 @@
-FROM debian:stable
+FROM debian:buster-slim
 
 RUN groupadd -g 1000 user \
 	&& useradd --create-home -d /home/user -g user -u 1000 user
 
-RUN apt-get update && apt-get install -y ca-certificates mutt-patched
+RUN echo 'path-include /usr/share/doc/mutt/examples/*' >> /etc/dpkg/dpkg.cfg.d/mutt
 
+RUN set -eux; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		ca-certificates \
+		mutt \
 # a browser is necessary!
-RUN apt-get update && apt-get install -y lynx
-ENV BROWSER lynx
-
+		lynx \
 # my preferred editor :) (see also muttrc)
-RUN apt-get update && apt-get install -y vim-nox
+		vim-nox \
+# "No authenticators available"
+		libsasl2-modules \
+# "GPGME: CMS protocol not available"
+		gpgsm \
+	; \
+	rm -rf /var/lib/apt/lists/*
+
+ENV BROWSER lynx
 
 USER user
 ENV HOME /home/user
@@ -19,10 +30,10 @@ RUN mkdir -p $HOME/.mutt/cache/headers $HOME/.mutt/cache/bodies \
 
 ENV LANG C.UTF-8
 
-ADD muttrc $HOME/.muttrc
-ADD vimrc $HOME/.vimrc
+COPY muttrc $HOME/.muttrc
+COPY vimrc $HOME/.vimrc
 
-ADD entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["mutt-patched"]
+CMD ["mutt"]

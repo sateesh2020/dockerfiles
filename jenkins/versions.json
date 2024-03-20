@@ -1,0 +1,16 @@
+{
+  "variants": [
+    "weekly",
+    "lts"
+  ],
+  "weekly": {
+    "sha256": "bdfaa5256dd0740442b75d579e8088aac806b1c1ec7de41c3adc028a16b302b3",
+    "version": "2.450",
+    "repo": "https://pkg.jenkins.io/debian"
+  },
+  "lts": {
+    "sha256": "8bf962573d6a902b50709342dc84c2ba1fb7e9c2ac040e42a7516b4004b8a4be",
+    "version": "2.440.1",
+    "repo": "https://pkg.jenkins.io/debian-stable"
+  }
+}

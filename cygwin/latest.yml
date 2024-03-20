@@ -1,0 +1,4 @@
+image: tianon/cygwin:latest
+manifests:
+  - image: tianon/cygwin:winltsc2022
+  - image: tianon/cygwin:win1809

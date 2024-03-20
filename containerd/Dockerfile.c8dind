@@ -1,0 +1,3 @@
+FROM tianon/containerd
+ENTRYPOINT ["dind", "docker-entrypoint.sh"]
+CMD ["containerd"]
