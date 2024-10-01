@@ -5,12 +5,9 @@
     "from": "python:3.10-slim-bullseye",
     "arches": [
       "amd64",
-      "arm32v5",
       "arm32v7",
       "arm64v8",
-      "i386",
-      "ppc64le",
-      "s390x"
+      "i386"
     ]
   }
 }
